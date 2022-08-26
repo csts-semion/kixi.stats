@@ -72,7 +72,9 @@
   (let [sd-xy (and (pos? n-x) (pos? n-y)
                    (sqrt (+ (/ (sq sd-x) n-x)
                             (/ (sq sd-y) n-y))))
-        z (and sd-xy
+        z (and (number? sd-xy)
+               (number? mean-x)
+               (number? mean-y)
                (pos? sd-xy)
                (double (/ (- mean-x mean-y) sd-xy)))]
     (when z

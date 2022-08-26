@@ -31,7 +31,7 @@
         se (regression-standard-error sum-squares x)
         df (- n 2)
         t-crit (d/critical-value (d/t {:v df}) alpha)
-        err (* t-crit se)]
+        err (* t-crit (or se 0))]
     (reify p/PInterval
       (lower [_] (- y-hat err))
       (upper [_] (+ y-hat err)))))
@@ -51,7 +51,7 @@
         se (regression-prediction-standard-error sum-squares x)
         df (- n 2)
         t-crit (d/critical-value (d/t {:v df}) alpha)
-        err (* t-crit se)]
+        err (* t-crit (or se 0))]
     (reify p/PInterval
       (lower [_] (- y-hat err))
       (upper [_] (+ y-hat err)))))
